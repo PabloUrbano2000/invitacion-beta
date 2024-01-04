@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SystemUser } from "../types";
-import { COOKIE_REFRESH_TOKEN, COOKIE_TOKEN } from "../utils/constants";
+import { COOKIE_TOKEN } from "../utils/constants";
 import { deleteCookie, getCookie } from "../utils/cookies";
 import { isStorageAvailable } from "../utils/storage";
 import { FirebaseContext } from "../firebase";
@@ -49,12 +49,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       Object.keys(localStorage).forEach((key) => delete localStorage[key]);
     }
     const token = getCookie(COOKIE_TOKEN);
-    const refreshToken = getCookie(COOKIE_REFRESH_TOKEN);
     if (token) {
       deleteCookie(COOKIE_TOKEN);
-    }
-    if (refreshToken) {
-      deleteCookie(COOKIE_REFRESH_TOKEN);
     }
   };
 

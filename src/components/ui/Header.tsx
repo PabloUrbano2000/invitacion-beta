@@ -17,25 +17,22 @@ const Header = () => {
         height: "10vh",
       }}
     >
-      <div className="hidden md:flex items-center flex-col justify-center">
+      {/* <div className="hidden md:flex items-center flex-col justify-center">
         <p className="text-white text-center">
           <span className="hidden xl:inline font-semibold">Rol:</span>{" "}
-          {user?.role?.alias}
+          {user?.email}
         </p>
-      </div>
+      </div> */}
       <div className="hidden md:flex items-center flex-col justify-center">
         <p className="text-white text-center">
           <span className="hidden xl:inline font-semibold">Usuario:</span>{" "}
-          {user?.first_name} {user?.last_name}
+          {user?.email}
         </p>
       </div>
       <div className="flex items-center flex-col justify-center ml-auto">
         {user ? (
           <button
             className="text-white font-medium p-2 rounded-md bg-sky-900 hover:bg-sky-950"
-            // style={{
-            //   background: "cornflowerblue",
-            // }}
             onClick={closeSession}
           >
             Cerrar Sesión

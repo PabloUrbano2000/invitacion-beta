@@ -1,111 +1,73 @@
 import { useState, useEffect, useContext } from "react";
 import { FirebaseContext } from "../../firebase";
 import { generateLastPath } from "../../utils/session";
-import { Reception } from "../../types";
-import {
-  getReceptionsWithRequiresAttention,
-  serveReception,
-} from "../../services";
+import { Invitation } from "../../types";
 import Spinner from "../ui/Spinner";
-import { showFailToast, showSuccessToast } from "../../utils/toast";
+import { showFailToast } from "../../utils/toast";
 
 const HomePage = () => {
-  const [receptions, setReceptions] = useState<Reception[]>([]);
-
   const { firebase } = useContext(FirebaseContext);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [invitations, setInvitations] = useState<Invitation[]>([]);
 
-  const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     generateLastPath();
 
-    const getReceptions = async () => {
-      try {
-        console.log("llego aqui");
-        const data = await getReceptionsWithRequiresAttention();
-        if (data.status_code === 200) {
-          setReceptions(data.docs);
-        } else {
-          setError(data.errors[0] || "Ocurrió un error desconocido");
-        }
-      } catch (error) {
-        setError("Ocurrió un error desconocido");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     try {
       setIsLoading(true);
-      const get = () => {
-        firebase?.listenDocumentsUpdateInRealtime("receptions", getReceptions);
-      };
-      get();
+
+      firebase?.getDocumentsRealtime("invitations", (data: any) => {
+        setInvitations(data);
+        setIsLoading(false);
+      });
     } catch (error) {
-      console.log(error);
+      showFailToast("Ocurrió un error al cargar las invitaciones");
     }
   }, []);
 
-  const handleServeReception = async (id: string) => {
-    try {
-      setIsLoading(true);
-      const data = await serveReception(id || "");
-      if (data.status_code === 200) {
-        setReceptions(receptions.filter((rec) => rec.id !== id));
-        showSuccessToast(data?.message || "");
-      } else {
-        showFailToast(data?.errors[0] || "");
-      }
-    } catch (error) {
-      showFailToast("Ocurrió un error desconocido");
-    } finally {
-      setIsLoading(false);
-    }
-  };
   return (
     <>
       <div className="flex flex-col container py-12 px-4 mx-auto">
-        <h1 className="text-center font-bold text-6xl mb-14">
-          Hola Usuario :{")"}
-        </h1>
-        <h2 className="text-center font-bold text-lg mb-14">
-          Esta es la página principal, por favor selecciona un módulo de la
-          parte izquierda.
-        </h2>
-        <h3 className="text-center font-semibold text-md">
-          Recuerda... ahora tu tienes el poder...
-        </h3>
         <div className="flex flex-col my-3">
-          <p className="font-bold">Mesas que requieren atención:</p>
+          <p className="font-bold">Invitaciones aceptadas y rechazadas:</p>
           {isLoading ? (
             <Spinner />
           ) : (
             <>
-              {error ? <p className="text-sm text-normal">{error}</p> : null}
-              {receptions.length === 0 ? (
+              {invitations.length === 0 ? (
                 <p className="text-sm text-normal">
-                  Por el momento no hay mesas que requieran atención
+                  Por el momento no hay invitaciones registradas
                 </p>
               ) : (
                 <table className="table-auto bg-white">
                   <thead>
                     <tr>
-                      <th>Nro. de mesa</th>
+                      <th>Nro.</th>
+                      <th>Familia</th>
+                      <th>Padre</th>
+                      <th>Madre</th>
+                      <th>Primer Hijo/a</th>
+                      <th>Segundo Hijo/a</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {receptions.map((rec) => (
-                      <tr key={rec.id} className="h-14">
-                        <td className="text-center">{rec.number_table}</td>
+                    {invitations.map((inv, index) => (
+                      <tr key={inv.id} className="h-14">
+                        <td className="text-center">{index + 1}</td>
+                        <td className="text-center">{inv.family_name}</td>
+                        <td className="text-center">{inv.father_name}</td>
+                        <td className="text-center">{inv.mother_name}</td>
+                        <td className="text-center">{inv.first_child_name}</td>
+                        <td className="text-center">{inv.second_child_name}</td>
                         <td>
                           <button
                             className="flex mx-auto w-auto text-center ml-auto rounded bg-orange-400 py-1 px-2 text-lg text-white text-normal font-bold"
-                            onClick={() => handleServeReception(rec.id || "")}
+                            // onClick={() => handleServeReception(rec.id || "")}
                           >
-                            Atender
+                            Ver
                           </button>
                         </td>
                       </tr>

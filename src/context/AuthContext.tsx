@@ -3,8 +3,7 @@ import { SystemUser } from "../types";
 import { COOKIE_REFRESH_TOKEN, COOKIE_TOKEN } from "../utils/constants";
 import { deleteCookie, getCookie } from "../utils/cookies";
 import { isStorageAvailable } from "../utils/storage";
-import { enviroments } from "../env";
-import { DocumentResponse } from "../interfaces";
+import { FirebaseContext } from "../firebase";
 
 export type ValuesOf<T> = { [P in keyof T]: T[P] };
 
@@ -40,6 +39,8 @@ const useAuthContext = (): AuthProviderValue => {
 };
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const { firebase } = React.useContext(FirebaseContext);
+
   const destroyStorageAndCookies = (): void => {
     if (isStorageAvailable("sessionStorage")) {
       Object.keys(sessionStorage).forEach((key) => delete sessionStorage[key]);
@@ -85,21 +86,15 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const accessToken = getCookie(COOKIE_TOKEN);
     if (accessToken) {
       try {
-        const result = await fetch(
-          `${enviroments.API_URL}/admin/auth/token/verify`,
-          {
-            method: "POST",
-            headers: {
-              "x-access-token": accessToken,
-            },
-          }
-        );
-        const data: DocumentResponse<SystemUser> = await result.json();
-        if (data.status_code === 200) {
+        const result = await firebase?.getOneDocument("users", [
+          ["token", "==", accessToken],
+        ]);
+
+        if (result) {
           return {
             ...value,
             status: authStatus.Ready,
-            user: data.data?.user || undefined,
+            user: result || undefined,
           };
         } else {
           destroyStorageAndCookies();

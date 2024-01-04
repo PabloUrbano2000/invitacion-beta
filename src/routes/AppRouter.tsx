@@ -12,28 +12,12 @@ import {
 import AuthLayout from "../components/layout/AuthLayout";
 import AdminLayout from "../components/layout/AdminLayout";
 import LoginPage from "../components/pages/auth/Login";
-import RecoveryPasswordPage from "../components/pages/auth/RecoveryPassword";
-import RestorePasswordPage from "../components/pages/auth/RestorePassword";
-import VerifyAccountPage from "../components/pages/auth/VerifyAccount";
 import ErrorPage404 from "../components/pages/auth/404";
 
 import { LAST_PATH } from "../utils/constants";
 import HomePage from "../components/pages/Home";
-import ProductsPage from "../components/pages/products/Products";
-import NewProductPage from "../components/pages/products/NewProduct";
-import EditProductPage from "../components/pages/products/EditProduct";
-import UsersPage from "../components/pages/users/Users";
-import NewUserPage from "../components/pages/users/NewUser";
-import EditUserPage from "../components/pages/users/EditUser";
-import ClientsPage from "../components/pages/clients/Clients";
-import DetailClientPage from "../components/pages/clients/DetailClient";
-import OrdersPage from "../components/pages/orders/Orders";
-import DetailOrderPage from "../components/pages/orders/DetailOrder";
-import SalesPage from "../components/pages/sales/Sales";
-import DetailSalePage from "../components/pages/sales/DetailSale";
-import ReceptionsPage from "../components/pages/receptions/Receptions";
-import NewReceptionPage from "../components/pages/receptions/NewReception";
-import EditReceptionPage from "../components/pages/receptions/EditReception";
+import FamiliesPage from "../components/pages/Families";
+import InvitationPage from "../components/pages/Invitation";
 
 import {
   authStatus,
@@ -69,13 +53,13 @@ const AppRouter = () => {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (status === authStatus.Ready) {
-      if (!user) {
-        if (!window.location.href.includes("/auth/")) {
+      if (!window.location.href.includes("/invitacion/")) {
+        if (!user) {
           navigate("/auth/login", { replace: true });
+        } else {
+          const PATH = sessionStorage.getItem(LAST_PATH) || "/dashboard";
+          navigate(PATH, { replace: true });
         }
-      } else {
-        const PATH = sessionStorage.getItem(LAST_PATH) || "/";
-        navigate(PATH, { replace: true });
       }
     }
   }, [status]);
@@ -83,115 +67,17 @@ const AppRouter = () => {
   return (
     <>
       <Routes>
-        <Route element={<FirebaseContainer />}>
-          <Route element={<RequireAuth isAllowed={!!user} />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/dashboard" element={<HomePage />} />
-          </Route>
-          <Route
-            element={
-              <RequireAuth
-                isAllowed={
-                  !!user &&
-                  !!user.role?.permissions?.some(
-                    (per) => per.name === "RECEPTIONS"
-                  )
-                }
-              />
-            }
-          >
-            <Route path="/recepciones" element={<ReceptionsPage />} />
-            <Route path="/recepciones/nuevo" element={<NewReceptionPage />} />
-            <Route
-              path="/recepciones/editar/:id"
-              element={<EditReceptionPage />}
-            />
-          </Route>
-
-          <Route
-            element={
-              <RequireAuth
-                isAllowed={
-                  !!user &&
-                  !!user.role?.permissions?.some(
-                    (per) => per.name === "PRODUCTS"
-                  )
-                }
-              />
-            }
-          >
-            <Route path="/productos" element={<ProductsPage />} />
-            <Route path="/productos/nuevo" element={<NewProductPage />} />
-            <Route path="/productos/editar/:id" element={<EditProductPage />} />
-          </Route>
-
-          <Route
-            element={
-              <RequireAuth
-                isAllowed={
-                  !!user &&
-                  !!user.role?.permissions?.some(
-                    (per) => per.name === "SYSTEM_USERS"
-                  )
-                }
-              />
-            }
-          >
-            <Route path="/usuarios" element={<UsersPage />} />
-            <Route path="/usuarios/nuevo" element={<NewUserPage />} />
-            <Route path="/usuarios/editar/:id" element={<EditUserPage />} />
-          </Route>
-
-          <Route
-            element={
-              <RequireAuth
-                isAllowed={
-                  !!user &&
-                  !!user.role?.permissions?.some((per) => per.name === "USERS")
-                }
-              />
-            }
-          >
-            <Route path="/clientes" element={<ClientsPage />} />
-            <Route path="/clientes/:id" element={<DetailClientPage />} />
-          </Route>
-
-          <Route
-            element={
-              <RequireAuth
-                isAllowed={
-                  !!user &&
-                  !!user.role?.permissions?.some((per) => per.name === "ORDERS")
-                }
-              />
-            }
-          >
-            <Route path="/pedidos" element={<OrdersPage />} />
-            <Route path="/pedidos/:id" element={<DetailOrderPage />} />
-          </Route>
-          <Route
-            element={
-              <RequireAuth
-                isAllowed={
-                  !!user &&
-                  !!user.role?.permissions?.some((per) => per.name === "SALES")
-                }
-              />
-            }
-          >
-            <Route path="/ventas" element={<SalesPage />} />
-            <Route path="/ventas/:id" element={<DetailSalePage />} />
-          </Route>
+        <Route element={<RequireAuth isAllowed={!!user} />}>
+          <Route path="/dashboard" element={<HomePage />} />
+          <Route path="/familias" element={<FamiliesPage />} />
         </Route>
+
+        <Route path="/invitacion/:id" element={<InvitationPage />} />
 
         <Route element={<AuthLayout />}>
           <Route path="/auth/login" element={<LoginPage />} />
-          <Route path="/auth/recovery" element={<RecoveryPasswordPage />} />
-          <Route path="/auth/restore" element={<RestorePasswordPage />} />
-          <Route path="/auth/verify" element={<VerifyAccountPage />} />
           <Route path="/auth/404" element={<ErrorPage404 />} />
         </Route>
-
         <Route path="*" element={<Navigate to="/auth/404" replace />} />
       </Routes>
       <Toaster />
@@ -201,9 +87,11 @@ const AppRouter = () => {
 
 export const AppRouterComponentContainer = () => (
   <Router>
-    <AuthProvider>
-      <AppRouter />
-    </AuthProvider>
+    <FirebaseContainer>
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
+    </FirebaseContainer>
   </Router>
 );
 

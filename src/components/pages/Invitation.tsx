@@ -7,7 +7,7 @@ import { showFailToast, showSuccessToast } from "../../utils/toast";
 import { FirebaseContext } from "../../firebase";
 import { generateRandom } from "../../utils/randoms";
 import Spinner from "../ui/Spinner";
-import { namesExtendRegex, namesRegex } from "../../utils/regex";
+import { namesExtendRegex } from "../../utils/regex";
 
 const InvitationPage = () => {
   const { id } = useParams();

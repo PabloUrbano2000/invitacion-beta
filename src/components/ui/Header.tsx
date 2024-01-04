@@ -1,11 +1,10 @@
 import { useAuthContext } from "../../context/AuthContext";
-import { logout } from "../../services";
 
 const Header = () => {
   const { user, cleanAuth } = useAuthContext();
 
   const closeSession = () => {
-    logout();
+    // logout();
     cleanAuth();
   };
 

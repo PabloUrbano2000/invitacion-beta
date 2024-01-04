@@ -37,8 +37,6 @@ const LoginPage = () => {
           ["password", "==", values.password],
         ]);
 
-        console.log(data);
-
         if (data) {
           const { id, ...res } = data;
           const token = generateRandom(20);

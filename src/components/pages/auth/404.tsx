@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const ErrorPage404 = () => {
   return (
@@ -14,13 +14,13 @@ const ErrorPage404 = () => {
           <h2 className="text-2xl mb-4 text-center font-semibold uppercase my-2">
             Página no encontrada
           </h2>
-          <Link
+          {/* <Link
             to={"/auth/login"}
             replace
             className="text-center mx-auto block text-blue-950 text-sm hover:text-blue-800"
           >
             Regresar a la pantalla principal
-          </Link>
+          </Link> */}
         </div>
       </div>
     </>

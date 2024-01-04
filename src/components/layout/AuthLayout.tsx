@@ -5,7 +5,7 @@ const AuthLayout = () => {
     <div
       className="flex m-auto items-center flex-col justify-center content-center min-h-screen"
       style={{
-        background: "#0f2539",
+        background: "#abd47b",
       }}
     >
       <Outlet />

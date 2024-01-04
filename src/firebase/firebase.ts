@@ -168,8 +168,6 @@ class Firebase {
     const q = query(docRef, ...filters);
     const querysnapshot = await getDocs(q);
 
-    console.log(querysnapshot.docs);
-
     const documents = querysnapshot.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });

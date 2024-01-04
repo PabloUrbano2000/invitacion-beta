@@ -8,9 +8,11 @@ import Spinner from "../ui/Spinner";
 import { showFailToast, showSuccessToast } from "../../utils/toast";
 import FormModal from "../ui/FormModal";
 import AlertModal from "../ui/AlertModal";
+import { useAuthContext } from "../../context/AuthContext";
 
 const FamiliesPage = () => {
   const { firebase } = useContext(FirebaseContext);
+  const { user } = useAuthContext();
   const [families, setFamilies] = useState<Family[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,23 +29,25 @@ const FamiliesPage = () => {
   const workbook = new Excel.Workbook();
 
   useEffect(() => {
-    generateLastPath();
+    if (user) {
+      generateLastPath();
 
-    try {
-      setIsLoading(true);
+      try {
+        setIsLoading(true);
 
-      firebase?.getDocumentsRealtime(
-        "families",
-        (data: any) => {
-          setFamilies(data);
-          setIsLoading(false);
-        },
-        ["name", "asc"]
-      );
-    } catch (error) {
-      showFailToast("Ocurrió un error al cargar las familias");
+        firebase?.getDocumentsRealtime(
+          "families",
+          (data: any) => {
+            setFamilies(data);
+            setIsLoading(false);
+          },
+          ["name", "asc"]
+        );
+      } catch (error) {
+        showFailToast("Ocurrió un error al cargar las familias");
+      }
     }
-  }, []);
+  }, [user]);
 
   const handleRegisterFamily = async () => {
     try {
@@ -173,50 +177,17 @@ const FamiliesPage = () => {
                 </p>
               ) : (
                 <div className="w-full overflow-auto">
-                  <table
-                    className="table-auto bg-white mt-2 w-full"
-                    style={{
-                      border: "1px solid #000000",
-                      minWidth: 400,
-                    }}
-                  >
-                    <thead className="bg-black text-white">
+                  <table className="table-auto bg-white mt-2 w-full">
+                    <thead>
                       <tr
                         style={{
                           minWidth: 150,
                         }}
                       >
-                        <th
-                          style={{
-                            padding: "0.5rem",
-                          }}
-                        >
-                          Nro.
-                        </th>
-                        <th
-                          style={{
-                            padding: "0.5rem",
-                          }}
-                        >
-                          ID
-                        </th>
-                        <th
-                          style={{
-                            minWidth: 150,
-                            padding: "0.5rem",
-                          }}
-                        >
-                          Nombre Familia
-                        </th>
-                        <th
-                          colSpan={1}
-                          style={{
-                            minWidth: 150,
-                            padding: "0.5rem",
-                          }}
-                        >
-                          Opciones
-                        </th>
+                        <th>Nro.</th>
+                        <th>ID</th>
+                        <th>Nombre Familia</th>
+                        <th>Opciones</th>
                       </tr>
                     </thead>
                     <tbody>

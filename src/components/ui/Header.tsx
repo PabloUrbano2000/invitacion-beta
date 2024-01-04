@@ -4,7 +4,6 @@ const Header = () => {
   const { user, cleanAuth } = useAuthContext();
 
   const closeSession = () => {
-    // logout();
     cleanAuth();
   };
 
@@ -12,16 +11,10 @@ const Header = () => {
     <header
       className="flex w-full gap-3 sticky top-0 z-10 px-6"
       style={{
-        backgroundColor: "#181924",
+        backgroundColor: "#abd47b",
         height: "10vh",
       }}
     >
-      {/* <div className="hidden md:flex items-center flex-col justify-center">
-        <p className="text-white text-center">
-          <span className="hidden xl:inline font-semibold">Rol:</span>{" "}
-          {user?.email}
-        </p>
-      </div> */}
       <div className="hidden md:flex items-center flex-col justify-center">
         <p className="text-white text-center">
           <span className="hidden xl:inline font-semibold">Usuario:</span>{" "}

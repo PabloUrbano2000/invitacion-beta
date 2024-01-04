@@ -36,7 +36,7 @@ interface RequireAuthProps {
 function RequireAuth({
   isAllowed,
   children,
-  redirectTo = "/auth/login",
+  redirectTo = "/login",
 }: RequireAuthProps) {
   if (!isAllowed) {
     return <Navigate to={redirectTo} />;
@@ -53,11 +53,12 @@ const AppRouter = () => {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (status === authStatus.Ready) {
-      if (!window.location.href.includes("/invitacion/")) {
+      const location = window.location.href;
+      const PATH = sessionStorage.getItem(LAST_PATH) || "/dashboard";
+      if (!location.includes("/invitacion") && !location.includes("/login")) {
         if (!user) {
-          navigate("/auth/login", { replace: true });
+          navigate("/404", { replace: true });
         } else {
-          const PATH = sessionStorage.getItem(LAST_PATH) || "/dashboard";
           navigate(PATH, { replace: true });
         }
       }
@@ -67,7 +68,11 @@ const AppRouter = () => {
   return (
     <>
       <Routes>
-        <Route element={<RequireAuth isAllowed={!!user} />}>
+        <Route
+          element={
+            <RequireAuth isAllowed={status === authStatus.Loading || !!user} />
+          }
+        >
           <Route path="/dashboard" element={<HomePage />} />
           <Route path="/familias" element={<FamiliesPage />} />
         </Route>
@@ -75,10 +80,10 @@ const AppRouter = () => {
         <Route path="/invitacion/:id" element={<InvitationPage />} />
 
         <Route element={<AuthLayout />}>
-          <Route path="/auth/login" element={<LoginPage />} />
-          <Route path="/auth/404" element={<ErrorPage404 />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/404" element={<ErrorPage404 />} />
         </Route>
-        <Route path="*" element={<Navigate to="/auth/404" replace />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
       <Toaster />
     </>

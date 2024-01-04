@@ -17,6 +17,7 @@ export type Invitation = {
   mother_name?: string;
   first_child_name?: string;
   second_child_name?: string;
+  canceller?: string;
   accepted?: Status;
   created_date?: Date | string;
 };

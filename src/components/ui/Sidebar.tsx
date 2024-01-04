@@ -13,7 +13,7 @@ const Sidebar = ({ show, onShow }: SidebarProps) => {
     <div
       className={`${
         show ? "w-3/4 absolute" : "w-1/6"
-      } sm:relative md:w-2/5 xl:w-1/5 bg-gray-800 h-screen z-50`}
+      } sm:relative md:w-2/5 xl:w-1/5 bg-green-900 h-screen z-50`}
     >
       <div className="flex flex-col p-3">
         <button
@@ -59,18 +59,18 @@ const Sidebar = ({ show, onShow }: SidebarProps) => {
       </div>
       <div className={`p-6 ${show ? "block" : "hidden"} md:block`}>
         <p className="uppercase text-white text-2xl tracking-wide text-center font-bold">
-          RestobarAdmin
+          InvitacionesAdmin
         </p>
-        <p className="mt-3 text-gray-500">
-          Administra tu restobar en las siguientes opciones:
+        <p className="mt-3 text-gray-300">
+          Administra tu invitaciones en las siguientes opciones:
         </p>
         <nav className="mt-10">
           {routes.map((router) => (
             <NavLink
               key={router?.name}
               className={({ isActive }) => {
-                return `p-1 py-2 block hover:bg-yellow-500 hover:text-gray-500 ${
-                  isActive ? "text-yellow-500" : "text-gray-400"
+                return `p-1 py-2 block hover:bg-green-100 hover:text-gray-500 ${
+                  isActive ? "text-blue-50" : "text-gray-400"
                 }`;
               }}
               to={router?.to || ""}

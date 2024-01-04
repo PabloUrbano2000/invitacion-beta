@@ -1,5 +1,5 @@
-const Spinner = () => {
-  return <div className="lds-dual-ring" />;
+const Spinner = ({ className = "" }) => {
+  return <div className={`lds-dual-ring ${className}`} />;
 };
 
 export default Spinner;

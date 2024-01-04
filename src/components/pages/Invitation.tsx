@@ -350,7 +350,7 @@ const Step4 = ({
             <input
               type={"submit"}
               disabled={inProcess}
-              className="bg-green-200 border-cyan-100 text-xl p-3 rounded"
+              className="bg-green-200 border-cyan-100 text-xl p-3 rounded disabled:bg-green-100"
               value="Enviar Respuesta"
             />
           </form>

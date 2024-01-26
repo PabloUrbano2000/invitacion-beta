@@ -91,7 +91,7 @@ const InvitationLayout = ({ children }: { children: React.ReactNode }) => {
     <div
       className="flex m-auto items-center flex-col justify-center content-center min-h-screen"
       style={{
-        background: "#abd47b",
+        background: "#0f0e1a",
       }}
     >
       <div className="invitation-container">{children}</div>

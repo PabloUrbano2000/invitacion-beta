@@ -35,18 +35,22 @@
   margin: auto;
   align-items: center;
   justify-content: center;
-  background-image: url("../assets/background-invitation-clean.png");
+  /* background-image: url("../assets/background-invitation-clean.png"); */
+  background-image: url("../assets/fondo-cumpleanios-ian.gif");
   background-position: center;
-  background-size: contain;
+  /* background-size: contain; */
   background-repeat: no-repeat;
   width: 100%;
-  max-width: 360px;
-  height: 500px;
+  /* max-width: 360px;
+  height: 500px; */
+  height: 100vh;
+  background-size: 100% 100%;
 }
 
 @media only screen and (min-width: 600px) {
   .invitation-container {
     max-width: 500px;
+    background-size: contain;
     height: 700px;
   }
 }

@@ -33,25 +33,136 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  align-items: center;
-  justify-content: center;
-  /* background-image: url("../assets/background-invitation-clean.png"); */
-  background-image: url("../assets/fondo-cumpleanios-ian.gif");
+  position: relative;
+  background-image: url("../assets/fondo-punteado.png");
   background-position: center;
-  /* background-size: contain; */
   background-repeat: no-repeat;
   width: 100%;
-  /* max-width: 360px;
-  height: 500px; */
-  height: 100vh;
+  height: 810px;
+  background-repeat: repeat-y;
   background-size: 100% auto;
+}
+
+.destello {
+  position: absolute;
+  height: 84px;
+  width: 84px;
+  margin: 15px;
+  /* background-color: white; */
+  background-image: url("../assets/destello.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.destello-top-left {
+  top: 0;
+  left: 0;
+}
+
+.destello-top-right {
+  top: 0;
+  right: 0;
+  transform: rotateZ(90deg);
+}
+
+.destello-bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: rotateZ(270deg);
+}
+
+.destello-bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotateZ(180deg);
+}
+
+.invitation-header {
+  width: 182px;
+  font-size: 20px;
+  height: 50px;
+  margin: 50px auto 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.invitation-subheader {
+  width: 250px;
+  font-size: 28px;
+  height: 103px;
+  margin: 5px auto 0;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.invitation-hat {
+  max-height: 170px;
+  width: auto;
+  margin: 10px auto 20px;
+}
+
+.invitation-description {
+  font-size: 20px;
+  height: 35px;
+  margin: 0 auto 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.invitation-subdescription {
+  width: 250px;
+  font-size: 28px;
+  height: 42px;
+  margin: 5px auto 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.invitation-house {
+  width: 324px;
+  height: auto;
+  margin: auto;
+  display: flex;
+}
+.invitation-house-direction {
+  font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto auto 20px;
+}
+
+.invitation-button {
+  display: flex;
+  height: 44px;
+  width: 236px;
+  flex-direction: column;
+  text-align: center;
+  color: #ffffff;
+  margin: auto auto 20px;
+  background-color: #3175b4;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
 }
 
 @media only screen and (min-width: 600px) {
   .invitation-container {
-    max-width: 500px;
+    background-repeat: repeat-x;
     background-size: contain;
-    height: 700px;
+    min-height: none;
+    max-width: 500px;
+    box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
+    -webkit-box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
+    margin: 10px auto;
   }
 }
 

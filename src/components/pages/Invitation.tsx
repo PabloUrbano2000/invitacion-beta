@@ -7,6 +7,8 @@ import { FirebaseContext } from "../../firebase";
 import Spinner from "../ui/Spinner";
 import { namesExtendRegex } from "../../utils/regex";
 import { Family, Invitation } from "../../types";
+import MagicHatImage from "../../assets/sombrero-magico.png";
+import HouseImage from "../../assets/casita-fecha-hora.png";
 
 const InvitationPage = () => {
   const { id } = useParams();
@@ -89,28 +91,56 @@ const InvitationPage = () => {
 const InvitationLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
-      className="flex m-auto items-center flex-col justify-center content-center min-h-screen"
+      className="flex m-auto flex-col min-h-screen"
       style={{
-        background: "#0f0e1a",
+        backgroundColor: "#d7ecf6",
       }}
     >
-      <div className="invitation-container">{children}</div>
+      <div className="invitation-container">
+        <div className="destello destello-top-left" />
+        <div className="destello destello-top-right" />
+        <div className="destello destello-bottom-left" />
+        <div className="destello destello-bottom-right" />
+        {children}
+      </div>
     </div>
   );
 };
 
 const Step1 = () => (
-  <div>
+  <div className="flex m-auto flex-col justify-center content-center">
     <Spinner className="lds-dual-ring-white"></Spinner>
   </div>
 );
 
 const Step2 = ({ changePage }: { changePage: Function }) => (
-  <div className="h-full flex flex-col p-7 justify-end">
-    <button
-      className="bg-green-200 border-cyan-100 text-xl p-3  rounded"
-      onClick={() => changePage(3)}
-    >
+  <div className="">
+    <div className="invitation-header">
+      <p>Ven a celebrar mi</p>
+    </div>
+    <div className="invitation-subheader">
+      <p>
+        cumpleaños
+        <br />
+        Mágico
+      </p>
+    </div>
+    <div className="m-auto">
+      <img src={MagicHatImage} alt="magic hat" className="invitation-hat" />
+    </div>
+    <div className="invitation-description">
+      <p>Mi primer añito</p>
+    </div>
+    <div className="invitation-subdescription">
+      <p>IAN SALVADOR</p>
+    </div>
+    <div className="invitation-house">
+      <img src={HouseImage} alt="invitation-house" />
+    </div>
+
+    <p className="invitation-house-direction">Jr. Jose Morales 917 - SJM</p>
+
+    <button className="invitation-button" onClick={() => changePage(3)}>
       Responder invitación
     </button>
   </div>

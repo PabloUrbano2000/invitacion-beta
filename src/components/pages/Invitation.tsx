@@ -607,7 +607,10 @@ const Step6 = ({ names }: { names: string }) => (
         Puedes ubicar la dirección en el
         <br />
         mapa aquí:{" "}
-        <a target="_blank" href="">
+        <a
+          target="_blank"
+          href="https://www.google.com/maps/place/Jr.+Jose+A.+Morales+917,+Lima+15801/@-12.1588896,-76.9716376,17z/data=!4m6!3m5!1s0x9105b8598cbe5a23:0x145ff1188cabb9de!8m2!3d-12.1594979!4d-76.9696313!16s%2Fg%2F11cs6vyc7w?entry=ttu"
+        >
           R2RJ+64
         </a>
       </p>

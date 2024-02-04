@@ -1,3 +1,14 @@
+/* FONTS */
+@font-face {
+  font-family: "Ballpoint";
+  src: url("../assets/fonts/Ballpoint-Regular.woff2");
+}
+
+@font-face {
+  font-family: "Brookshire";
+  src: url("../assets/fonts/EFCO Brookshire Regular.ttf");
+}
+
 .lds-dual-ring {
   display: inline-block;
   width: 80px;
@@ -37,6 +48,9 @@
   flex-direction: column;
   margin: auto;
   position: relative;
+  font-style: normal;
+  font-family: "Ballpoint", sans-serif;
+  line-height: 1;
   background-image: url("../assets/fondo-punteado.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -105,10 +119,12 @@
 
 .invitation-subheader {
   width: 250px;
-  font-size: 28px;
   height: 103px;
+  font-size: 48px;
+  line-height: 1;
   margin: 5px auto 0;
-  text-transform: uppercase;
+  font-family: "Brookshire", sans-serif;
+  text-transform: lowercase;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -121,9 +137,8 @@
 }
 
 .invitation-description {
-  font-size: 20px;
-  height: 35px;
-  margin: 0 auto 10px;
+  font-size: 25px;
+  margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -131,9 +146,10 @@
 
 .invitation-subdescription {
   width: 250px;
-  font-size: 28px;
+  font-size: 48px;
   height: 42px;
-  margin: 5px auto 15px;
+  font-family: "Brookshire";
+  margin: 0 auto 15px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -146,7 +162,7 @@
   display: flex;
 }
 .invitation-house-direction {
-  font-size: 17px;
+  font-size: 22px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -155,14 +171,14 @@
 
 .invitation-button {
   display: flex;
-  height: 44px;
   width: 236px;
   flex-direction: column;
   text-align: center;
   color: #ffffff;
-  margin: auto auto 20px;
+  margin: 25px auto;
   background-color: #3175b4;
-  font-size: 18px;
+  font-size: 22px;
+  padding: 12px 0;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
@@ -176,17 +192,18 @@
 .invitation-form-title {
   display: flex;
   flex-direction: column;
-  font-size: 17px;
+  font-size: 25px;
   text-align: center;
   margin: 75px auto 2px;
-  width: 117px;
-  height: 32px;
+  width: 140px;
 }
 
 .invitation-form-subtitle {
   display: flex;
   flex-direction: column;
-  font-size: 25px;
+  font-size: 48px;
+  line-height: 1;
+  font-family: "Brookshire";
   text-align: center;
   margin: auto;
   width: 250px;
@@ -197,7 +214,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  font-size: 20px;
+  font-size: 28px;
   text-align: center;
   margin: 60px auto 15px;
   width: 270px;
@@ -217,7 +234,7 @@
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  margin: auto 18px;
+  margin: auto 25px;
   cursor: pointer;
 }
 
@@ -254,8 +271,8 @@
 }
 
 .invitation-form-btn-container span {
-  margin: 5px auto 0;
-  font-size: 14px;
+  margin: 10px auto 0;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   width: auto;
@@ -273,16 +290,15 @@
 
 .form-confirm-title {
   width: 190px;
-  height: 39px;
   margin: 38px auto;
-  font-size: 18px;
+  font-size: 28px;
   text-align: center;
 }
 
 .form-denied-title {
-  margin: 20px auto 30px;
+  margin: 20px auto 34.5px;
   width: auto;
-  font-size: 19px;
+  font-size: 26px;
   text-align: center;
 }
 
@@ -292,7 +308,11 @@
   -moz-box-shadow: 1px 3px 36px -14px rgba(255, 42, 42, 0.88);
 }
 
-input.error-effect::placeholder {
+.invitation-content input {
+  font-size: 20px;
+}
+
+.invitation-content input.error-effect::placeholder {
   color: rgba(255, 102, 102, 0.88);
 }
 
@@ -314,14 +334,15 @@ input.error-effect::placeholder {
 }
 
 .invitation-final-message {
-  font-size: 21px;
+  font-size: 28px;
   text-align: center;
 }
 
 .invitation-final-text {
   height: 27%;
   text-align: center;
-  font-size: 38px;
+  font-size: 50px;
+  font-family: "Brookshire";
 }
 
 @media only screen and (min-width: 600px) {

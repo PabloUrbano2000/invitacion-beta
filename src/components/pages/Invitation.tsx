@@ -170,7 +170,7 @@ const Step2 = ({ changePage }: { changePage: Function }) => (
       <p>Mi primer añito</p>
     </div>
     <div className="invitation-subdescription">
-      <p>IAN SALVADOR</p>
+      <p>ian salvador</p>
     </div>
     <div className="invitation-house">
       <img src={HouseImage} className="invitation-house" />
@@ -197,7 +197,7 @@ const FormContainer = ({
 }) => (
   <>
     <p className="invitation-form-title">Mi primer añito</p>
-    <p className="invitation-form-subtitle">IAN SALVADOR</p>
+    <p className="invitation-form-subtitle">ian salvador</p>
     <div className="w-full p-2">
       <p className="invitation-form-header">
         ¿Asistirás a mi fiesta mágica?
@@ -219,7 +219,7 @@ const FormContainer = ({
             className={`invitation-form-btn confirm-button`}
             onClick={() => changePage(4)}
           ></button>
-          <span>Sí ahi estaré</span>
+          <span>Sí, ahi estaré!</span>
         </label>
         <label
           htmlFor="denied-button"
@@ -366,7 +366,7 @@ const Step4 = ({
               style={{
                 display: "grid",
                 gridTemplateColumns: "2fr 2fr",
-                gap: 10,
+                gap: 20,
               }}
             >
               <div className="mb-4 w-full">
@@ -404,7 +404,7 @@ const Step4 = ({
               style={{
                 display: "grid",
                 gridTemplateColumns: "2fr 2fr",
-                gap: 10,
+                gap: 20,
               }}
             >
               <div className="mb-4 w-full">
@@ -615,7 +615,7 @@ const Step6 = ({ names }: { names: string }) => (
         </a>
       </p>
     </div>
-    <p className="invitation-final-text">IAN SALVADOR</p>
+    <p className="invitation-final-text">ian salvador</p>
   </div>
 );
 
@@ -647,7 +647,7 @@ const Step7 = ({ names }: { names: string }) => (
         en responder!
       </p>
     </div>
-    <p className="invitation-final-text">IAN SALVADOR</p>
+    <p className="invitation-final-text">ian salvador</p>
   </div>
 );
 
@@ -660,7 +660,7 @@ const Step8 = () => (
         intentalo más tarde
       </p>
     </div>
-    <p className="invitation-final-text">IAN SALVADOR</p>
+    <p className="invitation-final-text">ian salvador</p>
   </div>
 );
 

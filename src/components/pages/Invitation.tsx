@@ -8,7 +8,7 @@ import Spinner from "../ui/Spinner";
 import { namesRegex } from "../../utils/regex";
 import { Family, Invitation } from "../../types";
 import MagicHatImage from "../../assets/sombrero-magico.png";
-import HouseImage from "../../assets/fecha-hora.png";
+import HouseImage from "../../assets/fecha-nueva-hora.png";
 import VaritaImage from "../../assets/varita2.png";
 import VenAMiImage from "../../assets/ven-a-celebrar.png";
 
@@ -525,7 +525,7 @@ const Step5 = ({
             <p className="form-denied-title">
               ¿Seguro que no podrás asistir?
               <br />
-              Por favor ingresa tu nombre.
+              Por favor ingresa tu nombre,
               <br />
               asi podremos guardar tus
               <br />
@@ -602,12 +602,18 @@ const Step6 = ({ names }: { names: string }) => (
           marginBottom: 20,
         }}
       >
-        Puedes ubicar la dirección en el
+        La fiesta es en:
         <br />
-        mapa aquí:{" "}
+        Jr. Jose Morales 917 Zona D - SJM,
+        <br />
+        puedes verla en el mapa aquí:{" "}
         <a
           target="_blank"
           href="https://www.google.com/maps/place/Jr.+Jose+A.+Morales+917,+Lima+15801/@-12.1588896,-76.9716376,17z/data=!4m6!3m5!1s0x9105b8598cbe5a23:0x145ff1188cabb9de!8m2!3d-12.1594979!4d-76.9696313!16s%2Fg%2F11cs6vyc7w?entry=ttu"
+          style={{
+            textDecoration: "underline",
+            color: "#2121ff",
+          }}
         >
           R2RJ+64
         </a>
@@ -652,10 +658,15 @@ const Step7 = ({ names }: { names: string }) => (
 const Step8 = () => (
   <div className="h-full flex flex-col">
     <div className="invitation-response">
+      <img
+        className="invitation-final-image"
+        src={VaritaImage}
+        alt="varita mágica"
+      />
       <p className="invitation-final-message">
         Algo salió mal
         <br />
-        intentalo más tarde
+        inténtalo más tarde
       </p>
     </div>
     <p className="invitation-final-text">ian salvador</p>

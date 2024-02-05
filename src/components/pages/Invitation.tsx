@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useParams } from "react-router";
 import { FirebaseContext } from "../../firebase";
 import Spinner from "../ui/Spinner";
-import { namesExtendRegex } from "../../utils/regex";
+import { namesRegex } from "../../utils/regex";
 import { Family, Invitation } from "../../types";
 import MagicHatImage from "../../assets/sombrero-magico.png";
 import HouseImage from "../../assets/fecha-hora.png";
@@ -176,7 +176,7 @@ const Step2 = ({ changePage }: { changePage: Function }) => (
       <img src={HouseImage} className="invitation-house" />
     </div>
 
-    <p className="invitation-house-direction">Jr. Jose Morales 917 - SJM</p>
+    <p className="invitation-house-direction">San Juan de Miraflores</p>
 
     <button className="invitation-button" onClick={() => changePage(3)}>
       Responder invitación
@@ -269,37 +269,37 @@ const Step4 = ({
     validationSchema: Yup.object({
       father_name: Yup.string()
         .required()
-        .matches(namesExtendRegex, "Formato inválido"),
+        .matches(namesRegex, "Formato inválido"),
       mother_name: Yup.string()
         .required()
-        .matches(namesExtendRegex, "Formato inválido"),
+        .matches(namesRegex, "Formato inválido"),
       first_child_name: Yup.string()
         .optional()
-        .matches(namesExtendRegex, "Formato inválido"),
+        .matches(namesRegex, "Formato inválido"),
       second_child_name: Yup.string()
         .optional()
-        .matches(namesExtendRegex, "Formato inválido"),
+        .matches(namesRegex, "Formato inválido"),
     }).shape(
       {
         father_name: Yup.string().when(["mother_name"], ([mother_name]) => {
           if (mother_name === undefined || mother_name?.length === 0) {
             return Yup.string()
               .required("Es requerido")
-              .matches(namesExtendRegex, "Formato inválido");
+              .matches(namesRegex, "Formato inválido");
           }
           return Yup.string()
             .optional()
-            .matches(namesExtendRegex, "Formato inválido");
+            .matches(namesRegex, "Formato inválido");
         }),
         mother_name: Yup.string().when(["father_name"], ([father_name]) => {
           if (father_name === undefined || father_name?.length === 0) {
             return Yup.string()
               .required("Es requerido")
-              .matches(namesExtendRegex, "Formato inválido");
+              .matches(namesRegex, "Formato inválido");
           }
           return Yup.string()
             .optional()
-            .matches(namesExtendRegex, "Formato inválido");
+            .matches(namesRegex, "Formato inválido");
         }),
       },
       [["father_name", "mother_name"]]
@@ -473,9 +473,7 @@ const Step5 = ({
       canceler: "",
     },
     validationSchema: Yup.object({
-      canceler: Yup.string()
-        .required()
-        .matches(namesExtendRegex, "Formato inválido"),
+      canceler: Yup.string().required().matches(namesRegex, "Formato inválido"),
     }),
     onSubmit: async (values) => {
       try {

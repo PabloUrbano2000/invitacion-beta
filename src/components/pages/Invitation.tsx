@@ -361,7 +361,9 @@ const Step4 = ({
             onSubmit={formik.handleSubmit}
             className="container px-3 mx-auto md:px-5"
           >
-            <p className="form-confirm-title">¿Con quién más irás?</p>
+            <p className="form-confirm-title">
+              Por favor ingresa tu nombre y el de las personas con las que irás:
+            </p>
             <div
               style={{
                 display: "grid",
@@ -443,7 +445,7 @@ const Step4 = ({
               type={"submit"}
               disabled={inProcess || !formik.isValid}
               style={{
-                marginTop: 70,
+                marginTop: 42,
               }}
               className="invitation-button"
               value="Enviar respuesta"

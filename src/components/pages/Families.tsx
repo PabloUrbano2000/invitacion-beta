@@ -102,8 +102,9 @@ const FamiliesPage = () => {
         ["name", "asc"],
       ]);
       res?.docs.forEach((data: Family) => {
-        const ax: Family = {};
+        const ax: Family & { invitation?: string } = {};
         ax.id = data.id;
+        ax.invitation = window.location.origin + "/" + data.id;
         ax.name = data.name || "";
         dataRowX.push(ax);
       });
@@ -111,6 +112,7 @@ const FamiliesPage = () => {
       const columns = [
         { header: "ID", key: "id" },
         { header: "Nombre", key: "name" },
+        { header: "Invitación", key: "invitation" },
       ];
       worksheet.columns = columns;
       worksheet.getRow(1).font = { bold: true };

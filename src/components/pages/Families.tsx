@@ -104,7 +104,7 @@ const FamiliesPage = () => {
       res?.docs.forEach((data: Family) => {
         const ax: Family & { invitation?: string } = {};
         ax.id = data.id;
-        ax.invitation = window.location.origin + "/" + data.id;
+        ax.invitation = window.location.origin + "/invitacion/" + data.id;
         ax.name = data.name || "";
         dataRowX.push(ax);
       });

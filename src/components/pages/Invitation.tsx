@@ -598,17 +598,35 @@ const Step6 = ({ names }: { names: string }) => (
       >
         Nos vemos muy pronto {names}
       </p>
+
+      <div className="invitation-house" style={{ marginBottom: 0 }}>
+        <img
+          src={HouseImage}
+          className="invitation-house"
+          style={{
+            width: 300,
+          }}
+        />
+      </div>
+
+      <p
+        className="invitation-house-direction"
+        style={{
+          marginTop: 10,
+        }}
+      >
+        Jr. Jose Morales 917 - SJM
+      </p>
+
       <p
         className="invitation-final-message"
         style={{
           marginBottom: 20,
         }}
       >
-        La fiesta es en:
+        Puedes ubicar la dirección en el
         <br />
-        Jr. Jose Morales 917 Zona D - SJM,
-        <br />
-        puedes verla en el mapa aquí:{" "}
+        mapa aquí:{" "}
         <a
           target="_blank"
           href="https://www.google.com/maps/place/Jr.+Jose+A.+Morales+917,+Lima+15801/@-12.1588896,-76.9716376,17z/data=!4m6!3m5!1s0x9105b8598cbe5a23:0x145ff1188cabb9de!8m2!3d-12.1594979!4d-76.9696313!16s%2Fg%2F11cs6vyc7w?entry=ttu"

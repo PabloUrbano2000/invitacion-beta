@@ -49,8 +49,8 @@ const BackgroundLayer = ({ isFull = true }) => {
   }
   return (
     <div className='layer'>
-      <div className='melody melody-top-left' />
-      <div className='melody melody-bottom-right' />
+      <div className='melody-top-left' />
+      <div className='melody-bottom-right' />
       <div className='tambor' />
       <div className='mini-piano' />
       <div className='guitarra' />
@@ -59,6 +59,8 @@ const BackgroundLayer = ({ isFull = true }) => {
       <div className='maracas' />
       <div className='piano' />
       <div className='trompeta' />
+      <div className='estrellita-left'></div>
+      <div className='estrellita-right'></div>
     </div>
   )
 }
@@ -67,6 +69,8 @@ const InvitationPage = () => {
   const { id } = useParams()
   const { firebase } = useContext(FirebaseContext)
   const [names, setNames] = React.useState('')
+  const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null)
+  // const [isPlayingAudio, setIsPlayingAudio] = React.useState(false)
 
   /*
    * 1: loading
@@ -121,14 +125,56 @@ const InvitationPage = () => {
     }
   }, [])
 
+  useEffect(() => {
+    setAudio(new Audio('/music/el-sol-redondito.mp3'))
+  }, [])
+
   const changePage = (page: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8) => {
     setStepByStep(page)
   }
 
+  // useEffect(() => {
+  //   if (audio) {
+  //     if (audio?.paused) {
+  //       setIsPlayingAudio(false)
+  //     } else {
+  //       setIsPlayingAudio(true)
+  //     }
+  //   }
+  // }, [audio])
+
+  // const changeAudio = () => {
+  //   if (audio?.paused) {
+  //     audio.play()
+  //     setIsPlayingAudio(true)
+  //   } else {
+  //     audio?.pause()
+  //     setIsPlayingAudio(false)
+  //   }
+  // }
+
   return (
     <InvitationLayout currentPage={stepByStep}>
+      {/* <button
+        className='song-icon'
+        style={{
+          position: 'absolute',
+          right: 10,
+          top: 10,
+          fontSize: 30,
+          width: 70,
+          height: 70,
+          display: isPlayingAudio ? 'none' : undefined
+        }}
+        onClick={changeAudio}
+      >
+        Dale play
+      </button> */}
+
       {stepByStep === 1 && <Step1></Step1>}
-      {stepByStep === 2 && <Step2 changePage={changePage}></Step2>}
+      {stepByStep === 2 && (
+        <Step2 changePage={changePage} playAudio={() => audio?.play()}></Step2>
+      )}
       {stepByStep === 3 && <Step3 changePage={changePage}></Step3>}
       {stepByStep === 4 && (
         <Step4
@@ -181,7 +227,13 @@ const Step1 = () => (
   </div>
 )
 
-const Step2 = ({ changePage }: { changePage: Function }) => (
+const Step2 = ({
+  changePage,
+  playAudio
+}: {
+  changePage: Function
+  playAudio: () => void
+}) => (
   <div>
     <div className='invitation-header'>
       <p>MIS 2 AÑITOS</p>
@@ -207,7 +259,10 @@ const Step2 = ({ changePage }: { changePage: Function }) => (
     <button
       className='invitation-button'
       style={{ marginTop: 80 }}
-      onClick={() => changePage(3)}
+      onClick={() => {
+        playAudio()
+        changePage(3)
+      }}
     >
       Responder invitación
     </button>
@@ -228,7 +283,7 @@ const FormContainer = ({
   <>
     <p className='invitation-form-title'>MIS 2 AÑITOS</p>
     <p className='invitation-form-subtitle'>IAN SALVADOR</p>
-    <div className='w-full p-2'>
+    <div className='w-full px-2'>
       <p className='invitation-form-header'>¿Vendrás a celebrar conmigo?</p>
       <div className='flex justify-center items-center'>
         <label
@@ -342,19 +397,16 @@ const Step4 = ({
           changePage(8)
           return
         }
-        const data = {
-          id: 'dsds'
-        }
 
-        // await firebase?.insertDocument('invitations', {
-        //   family: familyInstance,
-        //   family_name: familyFound.name,
-        //   father_name: values.father_name,
-        //   mother_name: values.mother_name,
-        //   first_child_name: values.first_child_name,
-        //   second_child_name: values.second_child_name,
-        //   accepted: 1
-        // })
+        const data = await firebase?.insertDocument('invitations', {
+          family: familyInstance,
+          family_name: familyFound.name,
+          father_name: values.father_name,
+          mother_name: values.mother_name,
+          first_child_name: values.first_child_name,
+          second_child_name: values.second_child_name,
+          accepted: 1
+        })
 
         if (data?.id) {
           const asistants = formatNames({
@@ -384,7 +436,7 @@ const Step4 = ({
             onSubmit={formik.handleSubmit}
             className='container px-3 mx-auto md:px-5'
           >
-            <p className='form-confirm-title'>Con quién más irás:</p>
+            <p className='form-confirm-title'>¿Con quién más irás?</p>
             <div
               style={{
                 display: 'grid',
@@ -466,7 +518,7 @@ const Step4 = ({
               type={'submit'}
               disabled={inProcess || !formik.isValid}
               style={{
-                marginTop: 42
+                marginTop: 12
               }}
               className='invitation-button'
               value='Enviar respuesta'
@@ -517,6 +569,7 @@ const Step5 = ({
           changePage(8)
           return
         }
+
         const data = await firebase?.insertDocument('invitations', {
           family: familyInstance,
           family_name: familyFound.name,
@@ -578,7 +631,7 @@ const Step5 = ({
               className='invitation-button'
               value='Enviar respuesta'
               style={{
-                marginTop: 90
+                marginTop: 35
               }}
             />
           </form>
@@ -594,17 +647,15 @@ const Step6 = ({ names }: { names: string }) => (
       <p
         className='invitation-final-message'
         style={{
-          marginTop: 10,
+          marginTop: 40,
           marginBottom: 20
         }}
       >
         Gracias, ¡mis papis y yo
         <br />
-        estamos contando los días
+        estamos listos para
         <br />
-        para poder compartir con
-        <br />
-        ustedes este momento mágico!
+        divertirnos juntos!
       </p>
       <p
         className='invitation-final-message'
@@ -614,6 +665,13 @@ const Step6 = ({ names }: { names: string }) => (
       >
         Nos vemos muy pronto {names}
       </p>
+
+      <h3 className='invitation-subdescription'>
+        FEBRERO <div>|</div>
+        <span>15</span>
+        <div>|</div> 3:30 PM
+      </h3>
+
       <p
         className='invitation-house-direction'
         style={{
@@ -629,9 +687,11 @@ const Step6 = ({ names }: { names: string }) => (
           marginBottom: 20
         }}
       >
-        Puedes ubicar la dirección en el
+        Puedes ubicar la
         <br />
-        mapa aquí:{' '}
+        dirección en el mapa
+        <br />
+        aquí:{' '}
         <a
           target='_blank'
           href='https://www.google.com/maps/place/Jr.+Jose+A.+Morales+917,+Lima+15801/@-12.1588896,-76.9716376,17z/data=!4m6!3m5!1s0x9105b8598cbe5a23:0x145ff1188cabb9de!8m2!3d-12.1594979!4d-76.9696313!16s%2Fg%2F11cs6vyc7w?entry=ttu'
@@ -650,21 +710,34 @@ const Step7 = ({ names }: { names: string }) => (
       <p
         className='invitation-final-message'
         style={{
-          marginTop: 10,
-          marginBottom: 20
+          marginTop: '30%',
+          marginBottom: 30
         }}
       >
-        ¡{names}, nos apena que no
+        ¡{names}, nos apena
         <br />
-        puedas asistir...
+        que no puedas asistir...
       </p>
-      <p className='invitation-final-message'>
+      <p
+        className='invitation-final-message'
+        style={{
+          marginTop: 0,
+          marginBottom: 'auto'
+        }}
+      >
         Gracias por tomarte el
         <br />
         tiempo en responder!
       </p>
     </div>
-    <p className='invitation-final-text'>IAN SALVADOR</p>
+    <p
+      className='invitation-final-text'
+      style={{
+        height: 200
+      }}
+    >
+      IAN SALVADOR
+    </p>
   </div>
 )
 

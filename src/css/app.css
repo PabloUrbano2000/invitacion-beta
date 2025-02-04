@@ -20,6 +20,11 @@
 }
 
 @font-face {
+  font-family: 'Cakerolli Regular';
+  src: url('../assets/fonts/Cakerolli-Regular.woff2');
+}
+
+@font-face {
   font-family: 'Cakerolli Light';
   src: url('../assets/fonts/Cakerolli-Light.woff2');
 }
@@ -78,7 +83,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .layer .tambor {
@@ -93,6 +98,16 @@
   background-size: contain;
 }
 
+.layer.tiny-layer .tambor {
+  bottom: 10px;
+  left: 10px;
+  transform: rotate(15deg);
+  width: 110px;
+  height: 100px;
+  top: auto;
+  right: auto;
+}
+
 .layer .mini-piano {
   position: absolute;
   top: 28px;
@@ -105,6 +120,14 @@
   background-size: contain;
 }
 
+.layer.tiny-layer .mini-piano {
+  top: 10px;
+  right: -15px;
+  transform: rotate(50deg);
+  width: 150px;
+  height: 120px;
+}
+
 .layer .melody-top-left {
   position: absolute;
   top: -18px;
@@ -115,6 +138,118 @@
   background: url('../assets/images/melodies.png') no-repeat;
   background-position: center;
   background-size: contain;
+  z-index: 1;
+}
+
+.layer .melody-bottom-right {
+  position: absolute;
+  bottom: -40px;
+  right: -53px;
+  width: 170px;
+  height: 170px;
+  transform: rotate(-17deg);
+  background: url('../assets/images/melodies.png') no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 1;
+}
+
+.layer .guitarra {
+  position: absolute;
+  top: 145px;
+  left: -15px;
+  width: 120px;
+  height: 120px;
+  transform: rotate(-5deg);
+  background: url('../assets/images/gif5_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.layer .pandereta {
+  position: absolute;
+  top: 165px;
+  right: -15px;
+  width: 90px;
+  height: 90px;
+  transform: rotate(10deg);
+  background: url('../assets/images/gif7_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.layer .triangulo {
+  position: absolute;
+  bottom: 165px;
+  left: -23px;
+  width: 100px;
+  height: 100px;
+  transform: rotate(-35deg);
+  background: url('../assets/images/gif3_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.layer .piano {
+  position: absolute;
+  bottom: 10px;
+  left: -60px;
+  width: 225px;
+  height: 95px;
+  transform: rotate(37deg);
+  background: url('../assets/images/gif1_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 1;
+}
+
+.layer .trompeta {
+  position: absolute;
+  bottom: -30px;
+  right: 48%;
+  transform: translateX(50%) rotate(15deg);
+  width: 150px;
+  height: 150px;
+  background: url('../assets/images/gif6_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 0;
+}
+
+.layer .maracas {
+  position: absolute;
+  bottom: 180px;
+  right: -12px;
+  width: 90px;
+  height: 90px;
+  transform: rotate(-30deg);
+  background: url('../assets/images/gif8_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.layer .estrellita-left {
+  bottom: 50%;
+  left: 0;
+  width: 42px;
+  height: 42px;
+  background: url('../assets/images/estrellita.png') no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  transform: translate(0%, 50%);
+}
+
+.layer .estrellita-right {
+  bottom: 50%;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  background: url('../assets/images/estrellita.png') no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  transform: translate(0%, 50%);
 }
 
 .invitation-container {
@@ -132,7 +267,7 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 720px;
+  min-height: 680px;
   height: 100vh;
   max-height: 850px;
   background-repeat: repeat-y;
@@ -144,14 +279,14 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  min-height: 720px;
+  min-height: 680px;
   margin: auto;
   position: relative;
   width: 100%;
 }
 
 .invitation-header {
-  margin: 150px auto 25px;
+  margin: 130px auto 25px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -176,20 +311,18 @@
 }
 
 .invitation-description {
-  margin: 0 auto 32px;
+  margin: 0 auto 40px;
   text-align: center;
   display: flex;
   flex-direction: column;
   font-family: 'Railey';
   font-size: 27px;
   color: #433a57;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
 }
 
 .invitation-subdescription {
-  width: 250px;
-  height: 42px;
-  margin: 0 auto 10px;
+  margin: 0 auto 20px;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -198,7 +331,7 @@
   color: #433a57;
   align-items: center;
   justify-content: center;
-  letter-spacing: 2px;
+  letter-spacing: 3.5px;
 }
 
 .invitation-subdescription div {
@@ -215,11 +348,9 @@
   display: inline;
   font-family: 'Hussar Ekologiczny';
   margin: auto 0;
-  /* margin: auto 5px; */
 }
 
 .invitation-house {
-  width: 324px;
   height: auto;
   margin: auto;
   display: flex;
@@ -232,23 +363,25 @@
   margin: auto auto 20px;
   font-family: 'Marykate';
   color: #433a57;
+  letter-spacing: 2px;
 }
 
 .invitation-button {
   display: flex;
-  width: 236px;
+  width: 215px;
   flex-direction: column;
   text-align: center;
   color: #433a57 !important;
   margin: 25px auto;
   background-color: #ffde59;
   font-size: 21px;
-  padding: 12px 0;
+  padding: 10px 0;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
   cursor: pointer;
   font-family: 'Marykate';
+  letter-spacing: 2px;
 }
 
 .invitation-button:disabled {
@@ -258,12 +391,12 @@
 .invitation-form-title {
   display: flex;
   flex-direction: column;
-  margin: 75px auto 2px;
-  width: 140px;
+  margin: 110px auto 20px;
   font-family: Marykate;
   font-size: 18px;
   color: #433a57;
   text-align: center;
+  letter-spacing: 2px;
 }
 
 .invitation-form-subtitle {
@@ -272,11 +405,10 @@
   line-height: 1;
   text-align: center;
   margin: auto;
-  width: 250px;
-  height: 37px;
-  font-family: 'Cakerolli Black';
+  font-family: 'Cakerolli Bold';
   font-size: 36px;
   color: #ffbd59;
+  letter-spacing: 2px;
 }
 
 .invitation-form-header {
@@ -285,12 +417,11 @@
   position: relative;
   font-size: 28px;
   text-align: center;
-  margin: 60px auto 15px;
-  width: 270px;
-  height: 33px;
+  margin: 35px auto 15px;
   font-family: 'Marykate';
   font-size: 24px;
   color: #433a57;
+  letter-spacing: 1px;
 }
 
 .invitation-form-image {
@@ -306,7 +437,7 @@
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  margin: auto 25px;
+  margin: auto 20px;
   cursor: pointer;
 }
 
@@ -322,8 +453,8 @@
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  width: 47px;
-  height: 47px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
@@ -338,7 +469,7 @@
 
 .invitation-form-btn.denied-button {
   background-image: url('../assets/boton-x.png');
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: #ffdb5e;
 }
 
@@ -364,19 +495,19 @@
 
 .form-confirm-title {
   width: auto;
-  margin: 38px auto;
+  margin: 25px auto 20px;
   font-size: 18px;
   text-align: center;
-  font-family: 'Cakerolli Light';
+  font-family: 'Cakerolli Regular';
   color: #433a57;
 }
 
 .form-denied-title {
-  margin: 20px auto 34.5px;
+  margin: 20px auto 25px;
   width: auto;
   font-size: 16px;
   text-align: center;
-  font-family: 'Cakerolli Light';
+  font-family: 'Cakerolli Regular';
   color: #433a57;
 }
 
@@ -398,7 +529,7 @@
 
 .invitation-response {
   margin: auto;
-  height: 73%;
+  height: auto;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -416,8 +547,9 @@
 .invitation-final-message {
   font-size: 20px;
   text-align: center;
-  font-family: 'Cakerolli Light';
+  font-family: 'Cakerolli Regular';
   color: #433a57;
+  letter-spacing: 1.5px;
 }
 
 .invitation-final-message a {
@@ -429,22 +561,21 @@
 }
 
 .invitation-final-text {
-  height: 27%;
+  height: 150px;
   text-align: center;
   font-size: 36px;
   font-family: 'Cakerolli Bold';
   color: #ffbd59;
+  letter-spacing: 1.5px;
 }
 
 @media only screen and (min-width: 600px) {
   .invitation-container {
-    background-repeat: repeat-x;
-    background-size: contain;
     min-height: none;
     max-width: 500px;
     min-height: none;
-    height: 810px;
-    max-height: none;
+    /* height: 810px; */
+    /* max-height: none; */
     box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
     -webkit-box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
     -moz-box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);

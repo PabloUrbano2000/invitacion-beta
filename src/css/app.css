@@ -1,12 +1,42 @@
 /* FONTS */
 @font-face {
-  font-family: "Ballpoint";
-  src: url("../assets/fonts/Ballpoint-Regular.woff2");
+  font-family: 'Ballpoint';
+  src: url('../assets/fonts/Ballpoint-Regular.woff2');
 }
 
 @font-face {
-  font-family: "Brookshire";
-  src: url("../assets/fonts/EFCO Brookshire Regular.ttf");
+  font-family: 'Brookshire';
+  src: url('../assets/fonts/EFCO Brookshire Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Cakerolli Black';
+  src: url('../assets/fonts/Cakerolli-Black.woff2');
+}
+
+@font-face {
+  font-family: 'Cakerolli Bold';
+  src: url('../assets/fonts/Cakerolli-Bold.woff2');
+}
+
+@font-face {
+  font-family: 'Cakerolli Light';
+  src: url('../assets/fonts/Cakerolli-Light.woff2');
+}
+
+@font-face {
+  font-family: 'Marykate';
+  src: url('../assets/fonts/Marykate.woff2');
+}
+
+@font-face {
+  font-family: 'Railey';
+  src: url('../assets/fonts/Railey.woff2');
+}
+
+@font-face {
+  font-family: 'Hussar Ekologiczny';
+  src: url('../assets/fonts/Hussar Ekologiczny.woff2');
 }
 
 .lds-dual-ring {
@@ -15,7 +45,7 @@
   height: 80px;
 }
 .lds-dual-ring:after {
-  content: " ";
+  content: ' ';
   display: block;
   width: 64px;
   height: 64px;
@@ -40,6 +70,53 @@
   }
 }
 
+.layer {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.layer .tambor {
+  position: absolute;
+  top: -5px;
+  right: 50%;
+  transform: translateX(50%) rotate(15deg);
+  width: 150px;
+  height: 110px;
+  background: url('../assets/images/gif4_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.layer .mini-piano {
+  position: absolute;
+  top: 28px;
+  right: -30px;
+  transform: rotate(55deg);
+  width: 150px;
+  height: 120px;
+  background: url('../assets/images/gif2_invite.gif') no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.layer .melody-top-left {
+  position: absolute;
+  top: -18px;
+  left: -30px;
+  width: 170px;
+  height: 170px;
+  transform: rotate(-17deg);
+  background: url('../assets/images/melodies.png') no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .invitation-container {
   display: flex;
   color: #000000;
@@ -50,110 +127,95 @@
   margin: auto;
   position: relative;
   font-style: normal;
-  font-family: "Ballpoint", sans-serif;
+  font-family: 'Marykate', sans-serif;
   line-height: 1;
-  background-image: url("../assets/fondo-punteado.png");
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 810px;
+  min-height: 720px;
   height: 100vh;
   max-height: 850px;
   background-repeat: repeat-y;
   background-size: 100% auto;
+  background-color: #fef7f9;
 }
 
 .invitation-content {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  min-height: 810px;
+  min-height: 720px;
   margin: auto;
   position: relative;
   width: 100%;
 }
 
-.destello {
-  position: absolute;
-  height: 84px;
-  width: 84px;
-  margin: 15px;
-  /* background-color: white; */
-  background-image: url("../assets/destello.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.destello-top-left {
-  top: 0;
-  left: 0;
-}
-
-.destello-top-right {
-  top: 0;
-  right: 0;
-  transform: rotateZ(90deg);
-}
-
-.destello-bottom-left {
-  bottom: 0;
-  left: 0;
-  transform: rotateZ(270deg);
-}
-
-.destello-bottom-right {
-  bottom: 0;
-  right: 0;
-  transform: rotateZ(180deg);
-}
-
 .invitation-header {
-  width: 182px;
-  font-size: 20px;
-  height: 50px;
-  margin: 50px auto 10px;
+  margin: 150px auto 25px;
   text-align: center;
   display: flex;
   flex-direction: column;
+  font-family: 'Marykate';
+  font-size: 22px;
+  color: #433a57;
+  letter-spacing: 1.8px;
+  text-shadow: 1px 1px #433a576e;
 }
 
 .invitation-subheader {
-  width: 250px;
-  height: 103px;
-  font-size: 48px;
   line-height: 1;
-  margin: 5px auto 0;
-  font-family: "Brookshire", sans-serif;
-  text-transform: lowercase;
+  margin: 0 auto 18px;
   text-align: center;
   display: flex;
   flex-direction: column;
-}
-
-.invitation-hat {
-  height: 170px;
-  width: auto;
-  margin: 10px auto 20px;
+  font-size: 22px;
+  font-family: 'Cakerolli Bold';
+  font-size: 48px;
+  color: #69a6c2;
+  letter-spacing: 5px;
 }
 
 .invitation-description {
-  font-size: 25px;
-  margin: 0 auto;
+  margin: 0 auto 32px;
   text-align: center;
   display: flex;
   flex-direction: column;
+  font-family: 'Railey';
+  font-size: 27px;
+  color: #433a57;
+  letter-spacing: 1.5px;
 }
 
 .invitation-subdescription {
   width: 250px;
-  font-size: 48px;
   height: 42px;
-  font-family: "Brookshire";
-  margin: 0 auto 15px;
+  margin: 0 auto 10px;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  font-family: 'Cakerolli Bold';
+  font-size: 18px;
+  color: #433a57;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+}
+
+.invitation-subdescription div {
+  font-family: 'Cakerolli Bold';
+  font-size: 26px;
+  color: #433a57;
+  display: inline;
+  margin: auto 8px;
+}
+
+.invitation-subdescription span {
+  font-size: 26px;
+  color: #433a57;
+  display: inline;
+  font-family: 'Hussar Ekologiczny';
+  margin: auto 0;
+  /* margin: auto 5px; */
 }
 
 .invitation-house {
@@ -168,6 +230,8 @@
   flex-direction: column;
   text-align: center;
   margin: auto auto 20px;
+  font-family: 'Marykate';
+  color: #433a57;
 }
 
 .invitation-button {
@@ -175,40 +239,44 @@
   width: 236px;
   flex-direction: column;
   text-align: center;
-  color: #ffffff;
+  color: #433a57 !important;
   margin: 25px auto;
-  background-color: #3175b4;
-  font-size: 22px;
+  background-color: #ffde59;
+  font-size: 21px;
   padding: 12px 0;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
   cursor: pointer;
+  font-family: 'Marykate';
 }
 
 .invitation-button:disabled {
-  background-color: #5690c6;
+  opacity: 0.7;
 }
 
 .invitation-form-title {
   display: flex;
   flex-direction: column;
-  font-size: 25px;
-  text-align: center;
   margin: 75px auto 2px;
   width: 140px;
+  font-family: Marykate;
+  font-size: 18px;
+  color: #433a57;
+  text-align: center;
 }
 
 .invitation-form-subtitle {
   display: flex;
   flex-direction: column;
-  font-size: 48px;
   line-height: 1;
-  font-family: "Brookshire";
   text-align: center;
   margin: auto;
   width: 250px;
   height: 37px;
+  font-family: 'Cakerolli Black';
+  font-size: 36px;
+  color: #ffbd59;
 }
 
 .invitation-form-header {
@@ -220,6 +288,9 @@
   margin: 60px auto 15px;
   width: 270px;
   height: 33px;
+  font-family: 'Marykate';
+  font-size: 24px;
+  color: #433a57;
 }
 
 .invitation-form-image {
@@ -260,23 +331,25 @@
 }
 
 .invitation-form-btn.confirm-button {
-  background-image: url("../assets/boton-check.png");
+  background-image: url('../assets/boton-check.png');
   border-radius: 50%;
   background-color: #0fc1e8;
 }
 
 .invitation-form-btn.denied-button {
-  background-image: url("../assets/boton-x.png");
+  background-image: url('../assets/boton-x.png');
   border-radius: 10px;
   background-color: #ffdb5e;
 }
 
 .invitation-form-btn-container span {
   margin: 10px auto 0;
-  font-size: 20px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
+  font-family: 'Cakerolli Light';
   width: auto;
+  color: #433a57;
 }
 
 .invitation-form-confirm-btn {
@@ -292,15 +365,19 @@
 .form-confirm-title {
   width: auto;
   margin: 38px auto;
-  font-size: 28px;
+  font-size: 18px;
   text-align: center;
+  font-family: 'Cakerolli Light';
+  color: #433a57;
 }
 
 .form-denied-title {
   margin: 20px auto 34.5px;
   width: auto;
-  font-size: 26px;
+  font-size: 16px;
   text-align: center;
+  font-family: 'Cakerolli Light';
+  color: #433a57;
 }
 
 .error-effect {
@@ -310,7 +387,9 @@
 }
 
 .invitation-content input {
-  font-size: 20px;
+  font-size: 16px;
+  font-family: 'Cakerolli Light';
+  color: #a6a6a6;
 }
 
 .invitation-content input.error-effect::placeholder {
@@ -335,15 +414,26 @@
 }
 
 .invitation-final-message {
-  font-size: 28px;
+  font-size: 20px;
   text-align: center;
+  font-family: 'Cakerolli Light';
+  color: #433a57;
+}
+
+.invitation-final-message a {
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Cakerolli Bold';
+  text-decoration: underline;
+  color: #2121ff;
 }
 
 .invitation-final-text {
   height: 27%;
   text-align: center;
-  font-size: 50px;
-  font-family: "Brookshire";
+  font-size: 36px;
+  font-family: 'Cakerolli Bold';
+  color: #ffbd59;
 }
 
 @media only screen and (min-width: 600px) {

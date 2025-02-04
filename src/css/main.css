@@ -586,10 +586,6 @@ video {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -635,6 +631,9 @@ video {
 .table {
   display: table;
 }
+.grid {
+  display: grid;
+}
 .hidden {
   display: none;
 }
@@ -652,6 +651,9 @@ video {
 }
 .h-6 {
   height: 1.5rem;
+}
+.h-full {
+  height: 100%;
 }
 .h-screen {
   height: 100vh;
@@ -714,10 +716,6 @@ video {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-}
-.columns-2 {
-  -moz-columns: 2;
-       columns: 2;
 }
 .flex-col {
   flex-direction: column;
@@ -782,10 +780,6 @@ video {
 .border-current {
   border-color: currentColor;
 }
-.border-cyan-100 {
-  --tw-border-opacity: 1;
-  border-color: rgb(207 250 254 / var(--tw-border-opacity));
-}
 .border-red-500 {
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
@@ -800,10 +794,6 @@ video {
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-}
-.bg-green-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
 }
 .bg-green-900 {
   --tw-bg-opacity: 1;
@@ -977,10 +967,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
-.text-green-600 {
-  --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity));
-}
 .text-neutral-500 {
   --tw-text-opacity: 1;
   color: rgb(115 115 115 / var(--tw-text-opacity));
@@ -1133,10 +1119,6 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
-.disabled\:bg-green-100:disabled {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
-}
 .disabled\:bg-primary-100:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(227 235 247 / var(--tw-bg-opacity));
@@ -1190,14 +1172,6 @@ video {
 
   .sm\:relative {
     position: relative;
-  }
-
-  .sm\:w-6\/12 {
-    width: 50%;
-  }
-
-  .sm\:w-11\/12 {
-    width: 91.666667%;
   }
 }
 @media (min-width: 768px) {

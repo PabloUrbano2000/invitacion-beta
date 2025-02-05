@@ -419,6 +419,9 @@ const Step5 = ({
             ['family', '==', familyInstance]
           ])
         if (invitationFound) {
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
           changePage(9)
           return
         }
@@ -443,6 +446,9 @@ const Step5 = ({
           updateNames(asistants)
           changePage(7)
         } else {
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
           changePage(9)
         }
       } catch (error) {
@@ -582,6 +588,9 @@ const Step6 = ({
           await firebase?.getDocumentById('families', id)
 
         if (!familyFound) {
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
           changePage(9)
           return
         }
@@ -591,6 +600,9 @@ const Step6 = ({
             ['family', '==', familyInstance]
           ])
         if (invitationFound) {
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
           changePage(9)
           return
         }
@@ -606,9 +618,15 @@ const Step6 = ({
           updateNames(values.canceler.split(' ')[0])
           changePage(8)
         } else {
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
           changePage(9)
         }
       } catch (error) {
+        setTimeout(() => {
+          location.reload()
+        }, 2000)
         changePage(9)
       } finally {
         setInProcess(false)

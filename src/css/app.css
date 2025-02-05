@@ -98,7 +98,7 @@
   background-size: contain;
 }
 
-.layer.tiny-layer .tambor {
+.layer.medium-layer .tambor {
   bottom: 10px;
   left: 10px;
   transform: rotate(15deg);
@@ -120,7 +120,7 @@
   background-size: contain;
 }
 
-.layer.tiny-layer .mini-piano {
+.layer.medium-layer .mini-piano {
   top: 10px;
   right: -15px;
   transform: rotate(50deg);
@@ -255,9 +255,7 @@
 .invitation-container {
   display: flex;
   color: #000000;
-  box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
-  -webkit-box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
-  -moz-box-shadow: 2px 6px 16px 3px rgba(0, 0, 0, 0.48);
+  box-shadow: 2px 6px 16px 3px rgba(144, 144, 144, 0.48);
   flex-direction: column;
   margin: auto;
   position: relative;
@@ -267,9 +265,10 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 680px;
-  height: 100vh;
-  max-height: 850px;
+  max-width: 400px;
+  height: 680px;
+  /* height: 100vh; */
+  /* max-height: 850px; */
   background-repeat: repeat-y;
   background-size: 100% auto;
   background-color: #fef7f9;
@@ -279,10 +278,67 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  min-height: 680px;
+  height: 680px;
   margin: auto;
   position: relative;
   width: 100%;
+}
+
+.invitation-preview-header {
+  margin: 130px auto 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Marykate';
+  font-size: 28px;
+  color: #433a57;
+  letter-spacing: 1.8px;
+  text-shadow: 1px 1px #433a576e;
+}
+
+.invitation-preview-subheader {
+  line-height: 1;
+  margin: 0 auto 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 52px;
+  font-family: 'Cakerolli Bold';
+  color: #ffbd59;
+  letter-spacing: 5px;
+}
+
+.invitation-preview-description {
+  margin: 0 auto 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Marykate';
+  font-size: 30px;
+  color: #433a57;
+  letter-spacing: 1.8px;
+  text-shadow: 1px 1px #433a576e;
+}
+
+.invitation-preview-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.invitation-preview-button button {
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.invitation-preview-button span {
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Cakerolli Regular';
+  font-size: 16px;
+  color: #433a57;
+  letter-spacing: 2px;
 }
 
 .invitation-header {
@@ -303,7 +359,6 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  font-size: 22px;
   font-family: 'Cakerolli Bold';
   font-size: 48px;
   color: #69a6c2;
@@ -322,7 +377,7 @@
 }
 
 .invitation-subdescription {
-  margin: 0 auto 20px;
+  margin: 0 auto 18px;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -336,7 +391,7 @@
 
 .invitation-subdescription div {
   font-family: 'Cakerolli Bold';
-  font-size: 26px;
+  font-size: 32px;
   color: #433a57;
   display: inline;
   margin: auto 8px;
@@ -348,6 +403,7 @@
   display: inline;
   font-family: 'Hussar Ekologiczny';
   margin: auto 0;
+  text-shadow: 1px 1px #433a576e;
 }
 
 .invitation-house {
@@ -374,13 +430,13 @@
   color: #433a57 !important;
   margin: 25px auto;
   background-color: #ffde59;
-  font-size: 21px;
+  font-size: 21px !important;
   padding: 10px 0;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
   cursor: pointer;
-  font-family: 'Marykate';
+  font-family: 'Marykate' !important;
   letter-spacing: 2px;
 }
 
@@ -442,35 +498,39 @@
 }
 
 .invitation-form-btn-container.disable span {
-  color: gray;
+  color: rgb(159, 159, 159);
 }
 
 .invitation-form-btn-container.disable button {
-  background-color: gray;
+  /* background-color: gray; */
 }
 
 .invitation-form-btn {
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  width: 36px;
+  width: 60px;
   height: 36px;
-  border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: transparent;
 }
 
 .invitation-form-btn.confirm-button {
-  background-image: url('../assets/boton-check.png');
-  border-radius: 50%;
-  background-color: #0fc1e8;
+  background-image: url('../assets/images/sol_color.png');
 }
 
 .invitation-form-btn.denied-button {
-  background-image: url('../assets/boton-x.png');
-  border-radius: 8px;
-  background-color: #ffdb5e;
+  background-image: url('../assets/images/lluvia_color.png');
+}
+
+.invitation-form-btn-container.disable .confirm-button {
+  background-image: url('../assets/images/sol_transparente.png');
+}
+
+.invitation-form-btn-container.disable .denied-button {
+  background-image: url('../assets/images/lluvia_transparente.png');
 }
 
 .invitation-form-btn-container span {
@@ -572,7 +632,7 @@
 @media only screen and (min-width: 600px) {
   .invitation-container {
     min-height: none;
-    max-width: 500px;
+    max-width: 450px;
     min-height: none;
     /* height: 810px; */
     /* max-height: none; */

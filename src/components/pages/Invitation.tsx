@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import * as Yup from 'yup'
 
 import { useParams } from 'react-router'
+import pianoGif from '../../assets/images/gif1_invite.gif'
 import { FirebaseContext } from '../../firebase'
 import { Family, Invitation } from '../../types'
 import { namesRegex } from '../../utils/regex'
@@ -36,10 +37,23 @@ const formatNames = ({
   return names
 }
 
-const BackgroundLayer = ({ isFull = true }) => {
-  if (!isFull) {
+const BackgroundLayer = ({
+  type = 'full'
+}: {
+  type: 'full' | 'medium' | 'tiny'
+}) => {
+  if (type === 'tiny') {
     return (
       <div className='layer tiny-layer'>
+        <div className='melody melody-top-left' />
+        <div className='melody melody-bottom-right' />
+      </div>
+    )
+  }
+
+  if (type === 'medium') {
+    return (
+      <div className='layer medium-layer'>
         <div className='melody melody-top-left' />
         <div className='melody melody-bottom-right' />
         <div className='tambor' />
@@ -69,21 +83,21 @@ const InvitationPage = () => {
   const { id } = useParams()
   const { firebase } = useContext(FirebaseContext)
   const [names, setNames] = React.useState('')
-  const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null)
-  // const [isPlayingAudio, setIsPlayingAudio] = React.useState(false)
+  const [audio, setAudio] = React.useState<HTMLAudioElement>()
 
   /*
    * 1: loading
-   * 2: mostrar invitacion
-   * 3: selección
-   * 4: formulario de confirmación
-   * 5: formulario de negación
-   * 6: mensaje final de confirmación
-   * 7: mensaje final de negación
-   * 8: mensaje de error
+   * 2: mostrar preinvitación
+   * 3: mostrar invitacion
+   * 4: selección
+   * 5: formulario de confirmación
+   * 6: formulario de negación
+   * 7: mensaje final de confirmación
+   * 8: mensaje final de negación
+   * 9: mensaje de error
    */
   const [stepByStep, setStepByStep] = React.useState<
-    1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+    1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
   >(1)
 
   useEffect(() => {
@@ -133,56 +147,14 @@ const InvitationPage = () => {
     setStepByStep(page)
   }
 
-  // useEffect(() => {
-  //   if (audio) {
-  //     if (audio?.paused) {
-  //       setIsPlayingAudio(false)
-  //     } else {
-  //       setIsPlayingAudio(true)
-  //     }
-  //   }
-  // }, [audio])
-
-  // const changeAudio = () => {
-  //   if (audio?.paused) {
-  //     audio.play()
-  //     setIsPlayingAudio(true)
-  //   } else {
-  //     audio?.pause()
-  //     setIsPlayingAudio(false)
-  //   }
-  // }
-
   return (
     <InvitationLayout currentPage={stepByStep}>
-      {/* <button
-        className='song-icon'
-        style={{
-          position: 'absolute',
-          right: 10,
-          top: 10,
-          fontSize: 30,
-          width: 70,
-          height: 70,
-          display: isPlayingAudio ? 'none' : undefined
-        }}
-        onClick={changeAudio}
-      >
-        Dale play
-      </button> */}
-
       {stepByStep === 1 && <Step1></Step1>}
       {stepByStep === 2 && (
         <Step2 changePage={changePage} playAudio={() => audio?.play()}></Step2>
       )}
       {stepByStep === 3 && <Step3 changePage={changePage}></Step3>}
-      {stepByStep === 4 && (
-        <Step4
-          id={id || ''}
-          changePage={changePage}
-          updateNames={setNames}
-        ></Step4>
-      )}
+      {stepByStep === 4 && <Step4 changePage={changePage}></Step4>}
       {stepByStep === 5 && (
         <Step5
           id={id || ''}
@@ -190,9 +162,16 @@ const InvitationPage = () => {
           updateNames={setNames}
         ></Step5>
       )}
-      {stepByStep === 6 && <Step6 names={names}></Step6>}
+      {stepByStep === 6 && (
+        <Step6
+          id={id || ''}
+          changePage={changePage}
+          updateNames={setNames}
+        ></Step6>
+      )}
       {stepByStep === 7 && <Step7 names={names}></Step7>}
-      {stepByStep === 8 && <Step8></Step8>}
+      {stepByStep === 8 && <Step8 names={names}></Step8>}
+      {stepByStep === 9 && <Step9></Step9>}
     </InvitationLayout>
   )
 }
@@ -204,6 +183,13 @@ const InvitationLayout = ({
   children: React.ReactNode
   currentPage: number
 }) => {
+  let layerType: 'tiny' | 'medium' | 'full' = 'medium'
+  if (currentPage === 1 || currentPage === 2) {
+    layerType = 'tiny'
+  } else if (currentPage === 3) {
+    layerType = 'full'
+  }
+
   return (
     <div
       className='flex m-auto flex-col min-h-screen'
@@ -212,9 +198,7 @@ const InvitationLayout = ({
       }}
     >
       <div className='invitation-container'>
-        <BackgroundLayer
-          isFull={[1, 2].includes(currentPage)}
-        ></BackgroundLayer>
+        <BackgroundLayer type={layerType}></BackgroundLayer>
         <div className='invitation-content'>{children}</div>
       </div>
     </div>
@@ -234,6 +218,36 @@ const Step2 = ({
   changePage: Function
   playAudio: () => void
 }) => (
+  <div>
+    <div className='invitation-preview-header'>
+      <p>MIS 2 AÑITOS</p>
+    </div>
+    <div className='invitation-preview-subheader'>
+      <p>
+        IAN
+        <br />
+        SALVADOR
+      </p>
+    </div>
+
+    <p className='invitation-preview-description'>¿Estás listo?</p>
+
+    <div className='invitation-preview-button'>
+      <button
+        role='button'
+        onClick={() => {
+          playAudio()
+          changePage(3)
+        }}
+      >
+        <img src={pianoGif} alt='piano button'></img>
+      </button>
+      <span>Toca el piano para comenzar</span>
+    </div>
+  </div>
+)
+
+const Step3 = ({ changePage }: { changePage: Function }) => (
   <div>
     <div className='invitation-header'>
       <p>MIS 2 AÑITOS</p>
@@ -259,10 +273,7 @@ const Step2 = ({
     <button
       className='invitation-button'
       style={{ marginTop: 80 }}
-      onClick={() => {
-        playAudio()
-        changePage(3)
-      }}
+      onClick={() => changePage(4)}
     >
       Responder invitación
     </button>
@@ -295,7 +306,7 @@ const FormContainer = ({
           <button
             id='confirm-button'
             className={`invitation-form-btn confirm-button`}
-            onClick={() => changePage(4)}
+            onClick={() => changePage(5)}
           ></button>
           <span>Si, ahí estaré!</span>
         </label>
@@ -308,7 +319,7 @@ const FormContainer = ({
           <button
             id='denied-button'
             className='invitation-form-btn denied-button'
-            onClick={() => changePage(5)}
+            onClick={() => changePage(6)}
           />
           <span>Uy, no podré ir</span>
         </label>
@@ -318,13 +329,13 @@ const FormContainer = ({
   </>
 )
 
-const Step3 = ({ changePage }: { changePage: Function }) => (
+const Step4 = ({ changePage }: { changePage: Function }) => (
   <div>
     <FormContainer changePage={changePage} />
   </div>
 )
 
-const Step4 = ({
+const Step5 = ({
   id,
   changePage,
   updateNames
@@ -385,7 +396,7 @@ const Step4 = ({
           await firebase?.getDocumentById('families', id)
 
         if (!familyFound) {
-          changePage(8)
+          changePage(9)
           return
         }
         const familyInstance = firebase?.instanceReferenceById('families', id)
@@ -394,7 +405,7 @@ const Step4 = ({
             ['family', '==', familyInstance]
           ])
         if (invitationFound) {
-          changePage(8)
+          changePage(9)
           return
         }
 
@@ -416,12 +427,12 @@ const Step4 = ({
             second_child_name: values.second_child_name
           })
           updateNames(asistants)
-          changePage(6)
+          changePage(7)
         } else {
-          changePage(8)
+          changePage(9)
         }
       } catch (error) {
-        changePage(8)
+        changePage(9)
       } finally {
         setInProcess(false)
       }
@@ -530,7 +541,7 @@ const Step4 = ({
   )
 }
 
-const Step5 = ({
+const Step6 = ({
   id,
   changePage,
   updateNames
@@ -557,7 +568,7 @@ const Step5 = ({
           await firebase?.getDocumentById('families', id)
 
         if (!familyFound) {
-          changePage(8)
+          changePage(9)
           return
         }
         const familyInstance = firebase?.instanceReferenceById('families', id)
@@ -566,7 +577,7 @@ const Step5 = ({
             ['family', '==', familyInstance]
           ])
         if (invitationFound) {
-          changePage(8)
+          changePage(9)
           return
         }
 
@@ -579,12 +590,12 @@ const Step5 = ({
 
         if (data?.id) {
           updateNames(values.canceler.split(' ')[0])
-          changePage(7)
-        } else {
           changePage(8)
+        } else {
+          changePage(9)
         }
       } catch (error) {
-        changePage(8)
+        changePage(9)
       } finally {
         setInProcess(false)
       }
@@ -631,7 +642,7 @@ const Step5 = ({
               className='invitation-button'
               value='Enviar respuesta'
               style={{
-                marginTop: 35
+                marginTop: 35.5
               }}
             />
           </form>
@@ -641,7 +652,7 @@ const Step5 = ({
   )
 }
 
-const Step6 = ({ names }: { names: string }) => (
+const Step7 = ({ names }: { names: string }) => (
   <div className='h-full flex flex-col'>
     <div className='invitation-response'>
       <p
@@ -704,7 +715,7 @@ const Step6 = ({ names }: { names: string }) => (
   </div>
 )
 
-const Step7 = ({ names }: { names: string }) => (
+const Step8 = ({ names }: { names: string }) => (
   <div className='h-full flex flex-col'>
     <div className='invitation-response'>
       <p
@@ -741,7 +752,7 @@ const Step7 = ({ names }: { names: string }) => (
   </div>
 )
 
-const Step8 = () => (
+const Step9 = () => (
   <div className='h-full flex flex-col'>
     <div className='invitation-response'>
       <p className='invitation-final-message'>

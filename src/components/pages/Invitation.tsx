@@ -756,7 +756,6 @@ const Step8 = ({ names }: { names: string }) => (
       <p
         className='invitation-final-message'
         style={{
-          marginTop: '30%',
           marginBottom: 30
         }}
       >

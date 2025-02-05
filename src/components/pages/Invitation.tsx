@@ -4,6 +4,8 @@ import * as Yup from 'yup'
 
 import { useParams } from 'react-router'
 import pianoGif from '../../assets/images/gif1_invite.gif'
+import soundOn from '../../assets/images/sound_on.png'
+
 import { FirebaseContext } from '../../firebase'
 import { Family, Invitation } from '../../types'
 import { namesRegex } from '../../utils/regex'
@@ -151,7 +153,15 @@ const InvitationPage = () => {
     <InvitationLayout currentPage={stepByStep}>
       {stepByStep === 1 && <Step1></Step1>}
       {stepByStep === 2 && (
-        <Step2 changePage={changePage} playAudio={() => audio?.play()}></Step2>
+        <Step2
+          changePage={changePage}
+          playAudio={() => {
+            if (audio) {
+              audio.loop = true
+              audio?.play()
+            }
+          }}
+        ></Step2>
       )}
       {stepByStep === 3 && <Step3 changePage={changePage}></Step3>}
       {stepByStep === 4 && <Step4 changePage={changePage}></Step4>}
@@ -242,7 +252,11 @@ const Step2 = ({
       >
         <img src={pianoGif} alt='piano button'></img>
       </button>
-      <span>Toca el piano para comenzar</span>
+      <span>
+        Activa el sonido <img src={soundOn} alt='sound on'></img> y,
+        <br />
+        toca el piano para comenzar
+      </span>
     </div>
   </div>
 )

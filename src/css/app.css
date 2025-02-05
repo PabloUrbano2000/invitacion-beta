@@ -302,14 +302,14 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  font-size: 52px;
-  font-family: 'Cakerolli Bold';
+  font-size: 60px;
+  font-family: 'Cakerolli Black';
   color: #ffbd59;
   letter-spacing: 5px;
 }
 
 .invitation-preview-description {
-  margin: 0 auto 40px;
+  margin: 0 auto 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -329,7 +329,7 @@
   width: 200px;
   height: auto;
   cursor: pointer;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 .invitation-preview-button span {
@@ -339,6 +339,14 @@
   font-size: 16px;
   color: #433a57;
   letter-spacing: 2px;
+  line-height: 30px;
+}
+
+.invitation-preview-button span img {
+  text-align: center;
+  display: inline;
+  width: 32px;
+  height: 28px;
 }
 
 .invitation-header {
@@ -453,6 +461,7 @@
   color: #433a57;
   text-align: center;
   letter-spacing: 2px;
+  text-shadow: 1px 1px #433a576e;
 }
 
 .invitation-form-subtitle {
@@ -501,16 +510,12 @@
   color: rgb(159, 159, 159);
 }
 
-.invitation-form-btn-container.disable button {
-  /* background-color: gray; */
-}
-
 .invitation-form-btn {
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  width: 60px;
-  height: 36px;
+  width: 70px;
+  height: 50px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -631,7 +636,6 @@
 
 @media only screen and (min-width: 600px) {
   .invitation-container {
-    min-height: none;
     max-width: 450px;
     min-height: none;
     /* height: 810px; */

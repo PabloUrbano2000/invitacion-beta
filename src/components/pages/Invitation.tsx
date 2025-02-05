@@ -684,11 +684,16 @@ const Step6 = ({
 
 const Step7 = ({ names }: { names: string }) => (
   <div className='h-full flex flex-col'>
-    <div className='invitation-response'>
+    <div
+      className='invitation-response'
+      style={{
+        marginTop: 150
+      }}
+    >
       <p
         className='invitation-final-message'
         style={{
-          marginTop: 40,
+          marginTop: 0,
           marginBottom: 20
         }}
       >
@@ -741,7 +746,7 @@ const Step7 = ({ names }: { names: string }) => (
         </a>
       </p>
       <p
-        style={{ height: 'auto', marginTop: 20 }}
+        style={{ height: 'auto', marginTop: 0 }}
         className='invitation-final-text'
       >
         IAN SALVADOR

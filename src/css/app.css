@@ -110,7 +110,7 @@
 
 .layer .mini-piano {
   position: absolute;
-  top: 28px;
+  top: 20px;
   right: -30px;
   transform: rotate(55deg);
   width: 150px;
@@ -350,7 +350,7 @@
 }
 
 .invitation-header {
-  margin: 130px auto 25px;
+  margin: 150px auto 25px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -628,7 +628,7 @@
 .invitation-final-text {
   height: 150px;
   text-align: center;
-  font-size: 36px;
+  font-size: 46px;
   font-family: 'Cakerolli Bold';
   color: #ffbd59;
   letter-spacing: 1.5px;

@@ -125,17 +125,17 @@ const InvitationPage = () => {
                   second_child_name: invitationFound.second_child_name || ''
                 })
               )
-              changePage(6)
+              changePage(7)
             } else {
               setNames(invitationFound.canceller || '')
-              changePage(7)
+              changePage(8)
             }
             return
           }
           changePage(2)
           return
         }
-        changePage(8)
+        changePage(9)
       }
       checkInvitationByFamilyId()
     }
@@ -145,7 +145,7 @@ const InvitationPage = () => {
     setAudio(new Audio('/music/el-sol-redondito.mp3'))
   }, [])
 
-  const changePage = (page: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8) => {
+  const changePage = (page: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9) => {
     setStepByStep(page)
   }
 
@@ -253,7 +253,7 @@ const Step2 = ({
         <img src={pianoGif} alt='piano button'></img>
       </button>
       <span>
-        Activa el sonido <img src={soundOn} alt='sound on'></img> y,
+        Activa el sonido <img src={soundOn} alt='sound on'></img> y
         <br />
         toca el piano para comenzar
       </span>
@@ -286,7 +286,7 @@ const Step3 = ({ changePage }: { changePage: Function }) => (
 
     <button
       className='invitation-button'
-      style={{ marginTop: 80 }}
+      style={{ marginTop: 60 }}
       onClick={() => changePage(4)}
     >
       Responder invitación
@@ -626,7 +626,7 @@ const Step6 = ({
             <p className='form-denied-title'>
               ¿Seguro que no vendrás?
               <br />
-              Por favor ingresa tu,
+              Por favor ingresa tu
               <br />
               nombre, asi podremos
               <br />
@@ -724,8 +724,13 @@ const Step7 = ({ names }: { names: string }) => (
           R2RJ+64
         </a>
       </p>
+      <p
+        style={{ height: 'auto', marginTop: 20 }}
+        className='invitation-final-text'
+      >
+        IAN SALVADOR
+      </p>
     </div>
-    <p className='invitation-final-text'>IAN SALVADOR</p>
   </div>
 )
 
@@ -754,15 +759,13 @@ const Step8 = ({ names }: { names: string }) => (
         <br />
         tiempo en responder!
       </p>
+      <p
+        style={{ height: 'auto', marginTop: 100 }}
+        className='invitation-final-text'
+      >
+        IAN SALVADOR
+      </p>
     </div>
-    <p
-      className='invitation-final-text'
-      style={{
-        height: 200
-      }}
-    >
-      IAN SALVADOR
-    </p>
   </div>
 )
 
@@ -774,8 +777,13 @@ const Step9 = () => (
         <br />
         inténtalo más tarde
       </p>
+      <p
+        style={{ height: 'auto', marginTop: 100 }}
+        className='invitation-final-text'
+      >
+        IAN SALVADOR
+      </p>
     </div>
-    <p className='invitation-final-text'>IAN SALVADOR</p>
   </div>
 )
 

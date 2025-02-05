@@ -456,7 +456,7 @@
   display: flex;
   flex-direction: column;
   margin: 110px auto 20px;
-  font-family: Marykate;
+  font-family: 'Marykate';
   font-size: 18px;
   color: #433a57;
   text-align: center;
@@ -470,7 +470,7 @@
   line-height: 1;
   text-align: center;
   margin: auto;
-  font-family: 'Cakerolli Bold';
+  font-family: 'Cakerolli Black';
   font-size: 36px;
   color: #ffbd59;
   letter-spacing: 2px;

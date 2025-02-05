@@ -644,11 +644,9 @@ const Step6 = ({
             <p className='form-denied-title'>
               ¿Seguro que no vendrás?
               <br />
-              Por favor ingresa tu
+              Por favor ingresa tu nombre
               <br />
-              nombre, asi podremos
-              <br />
-              guardar tus dulces
+              para guardar tus dulces
             </p>
             <div className='mb-4 mx-auto'>
               <input
@@ -674,7 +672,7 @@ const Step6 = ({
               className='invitation-button'
               value='Enviar respuesta'
               style={{
-                marginTop: 35.5
+                marginTop: 30
               }}
             />
           </form>

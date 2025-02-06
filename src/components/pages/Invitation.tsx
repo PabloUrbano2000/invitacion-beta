@@ -253,7 +253,7 @@ const Step2 = ({
         <img src={pianoGif} alt='piano button'></img>
       </button>
       <span>
-        Activa el sonido <img src={soundOn} alt='sound on'></img> y
+        Activa el sonido&nbsp;<img src={soundOn} alt='sound on'></img>&nbsp;y
         <br />
         toca el piano para comenzar
       </span>
